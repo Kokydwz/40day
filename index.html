@@ -558,10 +558,10 @@
   <header>
     <div class="header-badge">
       <i class="fas fa-trophy"></i>
-      Dev by koky
+      dev by kokydwz
     </div>
-    <h1>جدول المراجعة الذهبي</h1>
-    <p class="subtitle">السادس الإعدادي العلمي — كوكي</p>
+    <h1>جدول المراجعة الاولى</h1>
+    <p class="subtitle">السادس الإعدادي العلمي — kokydws</p>
   </header>
 
   <!-- LIVE CLOCK -->
@@ -630,32 +630,45 @@
 
 <script>
 // ========== DATA ==========
+// الجدول المعدّل:
+// رياضيات: ف١+ف٢ يوم لكل، ف٣+ف٤ يومان لكل، ف٥ يوم، نسخ يوم  → 8 أيام (30/3 - 6/4)
+// إنجليزي: 5 أيام مادة + يوم أدب إنجليزي مستقل → 6 أيام (7/4 - 12/4)
+//   أدب: 12 سكشن × سكشنان/يوم موزعة على أيام الإنجليزي الـ5 + يوم الأدب الإنجليزي
+// كيمياء: 6 فصول + يوم مراجعة + يوم نسخ → 8 أيام (13/4 - 20/4)
+// فيزياء: 7 فصول + يوم كلاميات + يوم مسائل + يوم نسخ → 10 أيام (21/4 - 30/4)
+// راحة: 1/5
+// أحياء: 8 أيام (2/5 - 9/5)
+// عربي: 8 أيام (10/5 - 17/5) — الأيام تزحزحت بسبب الإضافات
+
 const SUBJECTS = [
   {
     id: 'math',
     name: 'الرياضيات',
-    icon: 'fa-square-root-variable',
+    icon: 'fa-calculator',
     color: '#1da2a3',
     days: [
-      { date: '2025-03-30', day: 'الأحد',    subject: 'فصل أول رياضيات',    adab: 'محمد علي الكفاجي', islam: 'سورة البقرة' },
-      { date: '2025-03-31', day: 'الاثنين',  subject: 'فصل ثاني رياضيات',   adab: 'المسرحية',         islam: null },
-      { date: '2025-04-01', day: 'الثلاثاء', subject: 'فصل ثالث رياضيات',   adab: 'محمود درويش',      islam: 'قصة أصحاب الكهف + حديث التعاون' },
-      { date: '2025-04-02', day: 'الأربعاء', subject: 'فصل رابع رياضيات',   adab: 'فدوى طوقان',       islam: null },
-      { date: '2025-04-03', day: 'الخميس',   subject: 'فصل خامس رياضيات',   adab: 'شعر القضية الفلسطينية', islam: 'نظام الأسرة ج1' },
-      { date: '2025-04-04', day: 'الجمعة',   subject: 'نسخ وزارية (5-10 نسخ)', adab: 'أدونيس',         islam: null },
+      { date: '2025-03-30', day: 'الأحد',    subject: 'فصل ثالث رياضيات (ج1)', adab: 'محمود درويش',           islam: 'قصة أصحاب الكهف + حديث التعاون' },
+      { date: '2025-03-31', day: 'الاثنين',  subject: 'فصل ثالث رياضيات (ج2)', adab: 'فدوى طوقان',            islam: null },
+      { date: '2025-04-01', day: 'الثلاثاء', subject: 'فصل رابع رياضيات (ج1)', adab: 'شعر القضية الفلسطينية', islam: 'نظام الأسرة ج1' },
+      { date: '2025-04-02', day: 'الأربعاء', subject: 'فصل رابع رياضيات (ج2)', adab: 'أدونيس',                islam: null },
+      { date: '2025-04-03', day: 'الخميس',   subject: 'فصل خامس رياضيات',      adab: 'بدر شاكر السياب',       islam: 'نظام الأسرة ج2' },
+      { date: '2025-04-04', day: 'الجمعة',   subject: 'فصل أول رياضيات',       adab: 'محمد علي الكفاجي',      islam: 'سورة البقرة' },
+      { date: '2025-04-05', day: 'السبت',    subject: 'فصل ثاني رياضيات',      adab: 'المسرحية',              islam: null },
+      { date: '2025-04-06', day: 'الأحد',    subject: 'نسخ وزارية (5-10 نسخ)', adab: 'مدرسة الشعر الحر',      islam: null },
     ]
   },
   {
     id: 'english',
     name: 'الإنجليزي',
-    icon: 'fa-book-open',
+    icon: 'fa-language',
     color: '#1da2a3',
     days: [
-      { date: '2025-04-05', day: 'السبت',    subject: 'يونت 1 + 2',          adab: 'بدر شاكر السياب',              islam: 'نظام الأسرة ج2' },
-      { date: '2025-04-06', day: 'الأحد',    subject: 'يونت 3 + 4',          adab: 'مدرسة الشعر الحر',             islam: null },
-      { date: '2025-04-07', day: 'الاثنين',  subject: 'يونت 5 + أدب إنجليزي', adab: 'ميخائيل نعيمة + مدرسة المهجر', islam: 'النهي عن الغضب' },
-      { date: '2025-04-08', day: 'الثلاثاء', subject: 'يونت 6 + 7 + 8',      adab: 'محمد مهدي الجواهري',           islam: null },
-      { date: '2025-04-09', day: 'الأربعاء', subject: 'نسخ وزارية (10 نسخ)', adab: 'حافظ إبراهيم',                 islam: 'امتحان شامل الوحدة الأولى' },
+      { date: '2025-04-07', day: 'الاثنين',  subject: 'يونت 1 + 2',           adab: 'ميخائيل نعيمة + مدرسة المهجر',   islam: 'النهي عن الغضب' },
+      { date: '2025-04-08', day: 'الثلاثاء', subject: 'يونت 3 + 4',           adab: 'محمد مهدي الجواهري + الرواية ج1', islam: null },
+      { date: '2025-04-09', day: 'الأربعاء', subject: 'مراجعة أدب إنجليزي',   adab: 'الرواية ج2 + الرواية ج3',         islam: 'قصة مريم + حديث الناجون' },
+      { date: '2025-04-10', day: 'الخميس',   subject: 'يونت 5',               adab: 'حافظ إبراهيم + فؤاد التكرلي ج1', islam: null },
+      { date: '2025-04-11', day: 'الجمعة',   subject: 'يونت 6',               adab: 'فؤاد التكرلي ج2 + طه حسين',      islam: 'حقوق الزوجين ج1' },
+      { date: '2025-04-12', day: 'السبت',    subject: 'نسخ وزارية (10 نسخ)', adab: 'علي الشرقي + محمد سعيد الحبوبي', islam: 'حقوق الزوجين ج2 + امتحان شامل' },
     ]
   },
   {
@@ -664,13 +677,14 @@ const SUBJECTS = [
     icon: 'fa-flask',
     color: '#1da2a3',
     days: [
-      { date: '2025-04-10', day: 'الخميس',   subject: 'فصل أول + ثامن كيمياء', adab: 'علي الشرقي',                    islam: null },
-      { date: '2025-04-11', day: 'الجمعة',   subject: 'فصل ثاني كيمياء',       adab: 'محمد سعيد الحبوبي',             islam: 'سورة آل عمران' },
-      { date: '2025-04-12', day: 'السبت',    subject: 'فصل ثالث كيمياء',       adab: 'الرواية ج1',                    islam: null },
-      { date: '2025-04-13', day: 'الأحد',    subject: 'فصل رابع كيمياء',       adab: 'الرواية ج2',                    islam: 'قصة مريم + حديث الناجون' },
-      { date: '2025-04-14', day: 'الاثنين',  subject: 'فصل خامس كيمياء',       adab: 'الرواية ج3',                    islam: null },
-      { date: '2025-04-15', day: 'الثلاثاء', subject: 'فصل سادس كيمياء',       adab: 'فؤاد التكرلي ج1',               islam: 'حقوق الزوجين ج1' },
-      { date: '2025-04-16', day: 'الأربعاء', subject: 'نسخ وزارية (5-10 نسخ)', adab: 'فؤاد التكرلي ج2 + طه حسين',    islam: 'حقوق الزوجين ج2 + مراجعة شاملة' },
+      { date: '2025-04-13', day: 'الأحد',    subject: 'فصل أول كيمياء',  adab: null, islam: null },
+      { date: '2025-04-14', day: 'الاثنين',  subject: 'فصل ثاني كيمياء',        adab: null, islam: 'سورة آل عمران' },
+      { date: '2025-04-15', day: 'الثلاثاء', subject: 'فصل ثالث كيمياء',        adab: null, islam: null },
+      { date: '2025-04-16', day: 'الأربعاء', subject: 'فصل رابع كيمياء',        adab: null, islam: null },
+      { date: '2025-04-17', day: 'الخميس',   subject: 'فصل خامس كيمياء',        adab: null, islam: null },
+      { date: '2025-04-18', day: 'الجمعة',   subject: 'فصل سادس كيمياء',        adab: null, islam: null },
+      { date: '2025-04-19', day: 'السبت',    subject: 'مراجعة شاملة كيمياء',    adab: null, islam: null },
+      { date: '2025-04-20', day: 'الأحد',    subject: 'نسخ وزارية (5-10 نسخ)', adab: null, islam: null },
     ]
   },
   {
@@ -679,14 +693,16 @@ const SUBJECTS = [
     icon: 'fa-atom',
     color: '#1da2a3',
     days: [
-      { date: '2025-04-17', day: 'الخميس',   subject: 'فصل أول فيزياء',  adab: null, islam: null },
-      { date: '2025-04-18', day: 'الجمعة',   subject: 'فصل ثاني فيزياء', adab: null, islam: null },
-      { date: '2025-04-19', day: 'السبت',    subject: 'فصل ثالث فيزياء', adab: null, islam: null },
-      { date: '2025-04-20', day: 'الأحد',    subject: 'فصل رابع فيزياء', adab: null, islam: null },
-      { date: '2025-04-21', day: 'الاثنين',  subject: 'فصل خامس فيزياء', adab: null, islam: null },
-      { date: '2025-04-22', day: 'الثلاثاء', subject: 'فصل سادس فيزياء', adab: null, islam: null },
-      { date: '2025-04-23', day: 'الأربعاء', subject: 'فصل سابع فيزياء', adab: null, islam: null },
-      { date: '2025-04-24', day: 'الخميس',   subject: 'نسخ وزارية فيزياء', adab: null, islam: null },
+      { date: '2025-04-21', day: 'الاثنين',  subject: 'فصل أول فيزياء',    adab: 'سكشن 1 + 2 أدب إنجليزي',   islam: null },
+      { date: '2025-04-22', day: 'الثلاثاء', subject: 'فصل ثاني فيزياء',   adab: 'سكشن 3 + 4 أدب إنجليزي',   islam: null },
+      { date: '2025-04-23', day: 'الأربعاء', subject: 'فصل ثالث فيزياء',   adab: 'سكشن 5 + 6 أدب إنجليزي',   islam: null },
+      { date: '2025-04-24', day: 'الخميس',   subject: 'فصل رابع فيزياء',   adab: 'سكشن 7 + 8 أدب إنجليزي',   islam: null },
+      { date: '2025-04-25', day: 'الجمعة',   subject: 'فصل خامس فيزياء',   adab: 'سكشن 9 + 10 أدب إنجليزي',  islam: null },
+      { date: '2025-04-26', day: 'السبت',    subject: 'فصل سادس فيزياء',   adab: 'سكشن 11 + 12 أدب إنجليزي', islam: null },
+      { date: '2025-04-27', day: 'الأحد',    subject: 'فصل سابع فيزياء',   adab: null, islam: null },
+      { date: '2025-04-28', day: 'الاثنين',  subject: 'كلاميات فيزياء',    adab: null, islam: null },
+      { date: '2025-04-29', day: 'الثلاثاء', subject: 'مسائل فيزياء',      adab: null, islam: null },
+      { date: '2025-04-30', day: 'الأربعاء', subject: 'نسخ وزارية فيزياء', adab: null, islam: null },
     ]
   },
   {
@@ -695,23 +711,22 @@ const SUBJECTS = [
     icon: 'fa-moon',
     color: '#555',
     days: [
-      { date: '2025-04-25', day: 'الجمعة', subject: '😴 يوم راحة تامة', adab: null, islam: null, isRest: true },
+      { date: '2025-05-01', day: 'الخميس', subject: 'يوم راحة تامة', adab: null, islam: null, isRest: true },
     ]
   },
   {
     id: 'biology',
     name: 'الأحياء',
-    icon: 'fa-dna',
+    icon: 'fa-leaf',
     color: '#1da2a3',
     days: [
-      { date: '2025-04-26', day: 'السبت',    subject: 'فصل أول أحياء',          adab: null, islam: null },
-      { date: '2025-04-27', day: 'الأحد',    subject: 'فصل ثاني أحياء',         adab: null, islam: null },
-      { date: '2025-04-28', day: 'الاثنين',  subject: 'فصل ثالث أحياء (ج1)',    adab: null, islam: null },
-      { date: '2025-04-29', day: 'الثلاثاء', subject: 'فصل ثالث أحياء (ج2)',    adab: null, islam: null },
-      { date: '2025-04-30', day: 'الأربعاء', subject: 'فصل ثالث أحياء (ج3)',    adab: null, islam: null },
-      { date: '2025-05-01', day: 'الخميس',   subject: 'فصل رابع أحياء',         adab: null, islam: null },
-      { date: '2025-05-02', day: 'الجمعة',   subject: 'فصل خامس أحياء',         adab: null, islam: null },
-      { date: '2025-05-03', day: 'السبت',    subject: 'نسخ وزارية أحياء',       adab: null, islam: null },
+      { date: '2025-05-02', day: 'الجمعة',   subject: 'فصل أول أحياء',       adab: null, islam: null },
+      { date: '2025-05-03', day: 'السبت',    subject: 'فصل ثاني أحياء',      adab: null, islam: null },
+      { date: '2025-05-04', day: 'الأحد',    subject: 'فصل ثالث أحياء (ج1)', adab: null, islam: null },
+      { date: '2025-05-05', day: 'الاثنين',  subject: 'فصل ثالث أحياء (ج2)', adab: null, islam: null },
+      { date: '2025-05-06', day: 'الثلاثاء', subject: 'فصل ثالث أحياء (ج3)', adab: null, islam: null },
+      { date: '2025-05-07', day: 'الأربعاء', subject: 'فصل رابع أحياء',      adab: null, islam: null },
+      { date: '2025-05-08', day: 'الخميس',   subject: 'نسخ وزارية أحياء',    adab: null, islam: null },
     ]
   },
   {
@@ -720,14 +735,14 @@ const SUBJECTS = [
     icon: 'fa-pen-nib',
     color: '#1da2a3',
     days: [
-      { date: '2025-05-04', day: 'الأحد',    subject: 'استفهام',                       adab: null, islam: null },
-      { date: '2025-05-05', day: 'الاثنين',  subject: 'نفي',                           adab: null, islam: null },
-      { date: '2025-05-06', day: 'الثلاثاء', subject: 'تقديم وتأخير',                  adab: null, islam: null },
-      { date: '2025-05-07', day: 'الأربعاء', subject: 'توكيد',                         adab: null, islam: null },
-      { date: '2025-05-08', day: 'الخميس',   subject: 'مدح وذم + التعجب',             adab: null, islam: null },
-      { date: '2025-05-09', day: 'الجمعة',   subject: 'تمنّي وترجّي + عرض + تحضيض',  adab: null, islam: null },
-      { date: '2025-05-10', day: 'السبت',    subject: 'التحذير + أدب عربي شامل',      adab: null, islam: null },
-      { date: '2025-05-11', day: 'الأحد',    subject: 'نسخ وزارية شاملة',             adab: null, islam: null },
+      { date: '2025-05-09', day: 'الجمعة',   subject: 'استفهام',                      adab: null, islam: null },
+      { date: '2025-05-10', day: 'السبت',    subject: 'نفي',                          adab: null, islam: null },
+      { date: '2025-05-11', day: 'الأحد',    subject: 'تقديم وتأخير',                 adab: null, islam: null },
+      { date: '2025-05-12', day: 'الاثنين',  subject: 'توكيد',                        adab: null, islam: null },
+      { date: '2025-05-13', day: 'الثلاثاء', subject: 'مدح وذم + التعجب',            adab: null, islam: null },
+      { date: '2025-05-14', day: 'الأربعاء', subject: 'تمنّي وترجّي + عرض + تحضيض', adab: null, islam: null },
+      { date: '2025-05-15', day: 'الخميس',   subject: 'التحذير + أدب عربي شامل',     adab: null, islam: null },
+      { date: '2025-05-16', day: 'الجمعة',   subject: 'نسخ وزارية شاملة',            adab: null, islam: null },
     ]
   }
 ];
@@ -882,7 +897,7 @@ function renderSchedule() {
         <div style="flex:1">
           <div class="subject-name">${subj.name}</div>
           <div class="subject-meta">${subj.days.length} ${subj.id==='rest'?'يوم':'أيام'}</div>
-          <div class="subject-dates"><i class="fas fa-calendar-range"></i> ${datesRange}</div>
+          <div class="subject-dates"><i class="fas fa-calendar-days"></i> ${datesRange}</div>
         </div>
         ${allDaysDone ? '<span class="done-badge"><i class="fas fa-check-circle"></i> مكتملة</span>' : ''}
       </div>
